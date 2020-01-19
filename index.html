@@ -1,38 +1,82 @@
+<!DOCTYPE html>
 <html>
 <head>
-<script src="./jquery-3.4.1.js"></script>
-<link rel="stylesheet" type="text/css" href="./main.css">
-<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Ibarra+Real+Nova&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Libre+Caslon+Text&display=swap" rel="stylesheet"> 
+    <title>Buscar Pelicula</title>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
-<div class="container mt-3 text-center">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-12 content">
-                <h3>OMDB</h3>
-                <div id="search">
-                    <form>
-                        <input type="text" class="search-input search border-padding" placeholder="Pon el nombre de la pelicula">
-                    </form>
-                    <div id="result-list" class="border-padding mb-3">
-                        <div id="results"></div>
-                        <div id="result-footer" class="pt-4 mt-2"><a href="#" id="show-more">Ver mas »</a></div>
-                    </div>
-                </div>
-            </div>
-            <div id="list" class="col-md-12">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 list-header">
-                      <div class="text-center"><button id="searchAgain" class="btn btn-	primary">Buscar de nuevo</button></div>
-                        <div class="d-flex justify-content-between p-3">
-                            <div id="search-term"></div>
-                            <div id="list-count"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="row m-3" id="list-results"></div>
-                </div>
-            </div>
-        </div>
+<body>    
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light  bg-dark">
+      <img class="navbar-brand" id="navIcon" src="./img/icon.png"/>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <input class="form-control mr-sm-2 " type="text" id="name" placeholder="Name" required>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="verPelis()">Buscar</button>
+      </div>
+    </nav>
+    <div id="movies" class="row">
     </div>
-    <script src="./omdb.js"></script> 
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="spinner-border text-success" style="display: none;" id="carga" role="status">
+        <span class="sr-only">Cargando...</span>
+      </div>
+    </div>
+    <div class="modal" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">Titulo moadal</h5>
+            <button type="button" class="close" id="cerrar" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body row">
+            <div id="divImagen" class="col-12 col-md-5">
+                <img id="img"></img>
+            </div>
+            <div id="descripcion" class="col-12 col-md-7">
+              <label><strong>Genre</strong></label>
+              <p id="genre"></p>
+              <label><strong>Release</strong></label>
+              <p id="release"></p>
+              <label><strong>Director</strong></label>
+              <p id="director"></p>
+              <label><strong>Writer</strong></label>
+              <p id="writer"></p>
+              <label><strong>Actors</strong></label>
+              <p id="actors"></p>
+              <label><strong>Plot</strong></label>
+              <p id="plot"></p>
+              <label><strong>Rating</strong></label>
+              <div>
+                <i id="star1" class="far fa-star"></i>
+                <i id="star2" class="far fa-star"></i>
+                <i id="star3" class="far fa-star"></i>
+                <i id="star4" class="far fa-star"></i>
+                <i id="star5" class="far fa-star"></i>
+                <span class="badge badge-info" id="numPuntuacion"></span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./js/main.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
 </html>
